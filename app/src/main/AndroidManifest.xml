@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YoutubeApp">
         <activity
+            android:name=".about"
+            android:exported="false" />
+        <activity
+            android:name=".dashboard"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

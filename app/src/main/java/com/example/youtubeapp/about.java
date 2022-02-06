@@ -4,27 +4,22 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.VideoView;
-import android.widget.MediaController;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class about extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.activity_about);
         //initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
 
         //Set Home Selected
-        bottomNavigationView.setSelectedItemId(R.id.home);
+        bottomNavigationView.setSelectedItemId(R.id.about);
 
         //Perform ItemSelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -37,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.home:
+                        startActivity(new Intent(getApplicationContext()
+                                ,MainActivity.class));
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.about:
-                        startActivity(new Intent(getApplicationContext()
-                                ,about.class));
-                        overridePendingTransition(0,0);
                         return true;
                 }
 
