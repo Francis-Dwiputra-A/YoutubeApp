@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VideoViewActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <VideoView
+            android:id="@+id/v"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="Visibility"/>
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/back_selector"
+            android:text="Back"
+            android:textAllCaps="false"
+            android:textSize="5pt"
+            android:textColor="#ffffff"
+            android:onClick="backHome" />
+
+    </FrameLayout>
+
+</LinearLayout>

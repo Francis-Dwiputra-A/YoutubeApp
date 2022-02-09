@@ -10,6 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="785dp"
         android:layout_weight="1"
         android:background="@color/white"
         android:gravity="right"
@@ -24,26 +26,10 @@
             android:drawableLeft="@drawable/ic_search"
             android:ems="10"
             android:gravity="center"
-            android:hint="Search"></EditText>
+            android:hint="Search"
+            tools:ignore="TouchTargetSizeCheck"></EditText>
 
     </LinearLayout>
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
-        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="428dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
-        app:backgroundTint="#FF0000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:ignore="BottomAppBar" />
 
 
     <ImageView
@@ -56,7 +42,6 @@
         android:layout_marginBottom="2dp"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/bottomAppBar"
         app:srcCompat="@drawable/home" />
 
     <TextView
@@ -69,8 +54,7 @@
         android:text="Home"
         android:textColor="#FFFFFF"
         android:textSize="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/bottomAppBar" />
+        app:layout_constraintEnd_toStartOf="@+id/textView2" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -93,8 +77,7 @@
         android:text="History"
         android:textColor="#FFFFFF"
         android:textSize="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toTopOf="@+id/bottomAppBar" />
+        app:layout_constraintEnd_toStartOf="@+id/textView3" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -116,8 +99,7 @@
         android:text="Short"
         android:textColor="#FFFFFF"
         android:textSize="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/bottomAppBar" />
+        app:layout_constraintEnd_toStartOf="@+id/textView4" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -127,7 +109,6 @@
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
         app:layout_constraintEnd_toStartOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="@+id/bottomAppBar"
         app:srcCompat="@drawable/subscribe" />
 
     <TextView
@@ -150,8 +131,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="35dp"
         android:layout_marginRight="35dp"
-        app:layout_constraintEnd_toEndOf="@+id/bottomAppBar"
-        app:layout_constraintTop_toTopOf="@+id/bottomAppBar"
         app:srcCompat="@drawable/menu_button_of_three_horizontal_lines" />
 
     <TextView
@@ -164,18 +143,18 @@
         android:text="More"
         android:textColor="#FFFFFF"
         android:textSize="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/bottomAppBar"
         app:layout_constraintTop_toTopOf="@+id/imageView6" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="411dp"
         android:layout_height="188dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="80dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView16">
+        app:layout_constraintTop_toBottomOf="@+id/imageView16"
+        android:layout_centerHorizontal="true">
 
         <ImageView
             android:id="@+id/imageView17"
@@ -211,19 +190,20 @@
 
     <ImageView
         android:id="@+id/imageView20"
-        android:layout_width="417dp"
+        android:layout_width="2700dp"
         android:layout_height="240dp"
+        android:layout_marginTop="300dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView21"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/thumbnail" />
+        app:srcCompat="@drawable/thumbnail"
+        android:onClick="openVideo" />
 
     <ImageView
         android:id="@+id/imageView21"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="91dp"
-        android:layout_marginBottom="66dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomAppBar"
+        android:layout_marginTop="530dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/thumbnail_title" />
@@ -232,9 +212,9 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         app:itemBackground="@color/design_default_color_primary"
-        app:itemTextColor="@drawable/selector"
         app:itemIconTint="@drawable/selector"
-        app:menu="@menu/menu_navigation"
-        android:layout_alignParentBottom="true" />
+        app:itemTextColor="@drawable/selector"
+        app:menu="@menu/menu_navigation" />
 </RelativeLayout>

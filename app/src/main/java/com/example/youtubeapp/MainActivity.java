@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.VideoView;
 import android.widget.MediaController;
@@ -14,6 +15,7 @@ import android.widget.MediaController;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+    VideoView video;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,5 +50,9 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+    public void openVideo(View v) {
+        Intent intent = new Intent(this, VideoViewActivity.class);
+        startActivity(intent);
     }
 }
