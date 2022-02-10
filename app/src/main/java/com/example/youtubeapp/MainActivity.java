@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.home);
 
         //Perform ItemSelectedListener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener
+                (new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
@@ -43,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.about:
                         startActivity(new Intent(getApplicationContext()
                                 ,about.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.more:
+                        startActivity(new Intent(getApplicationContext()
+                                ,More.class));
                         overridePendingTransition(0,0);
                         return true;
                 }

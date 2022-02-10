@@ -9,17 +9,18 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class about extends AppCompatActivity {
+public class More extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.activity_more);
+
         //initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
 
         //Set Home Selected
-        bottomNavigationView.setSelectedItemId(R.id.about);
+        bottomNavigationView.setSelectedItemId(R.id.more);
 
         //Perform ItemSelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -37,11 +38,11 @@ public class about extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.about:
+                        startActivity(new Intent(getApplicationContext()
+                                ,about.class));
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.more:
-                        startActivity(new Intent(getApplicationContext()
-                                ,More.class));
-                        overridePendingTransition(0,0);
                         return true;
                 }
 

@@ -15,7 +15,6 @@ public class dashboard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-
         //initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
 
@@ -37,6 +36,11 @@ public class dashboard extends AppCompatActivity {
                     case R.id.about:
                         startActivity(new Intent(getApplicationContext()
                                 ,about.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.more:
+                        startActivity(new Intent(getApplicationContext()
+                                ,More.class));
                         overridePendingTransition(0,0);
                         return true;
                 }

@@ -26,7 +26,8 @@
             android:textAllCaps="false"
             android:textSize="5pt"
             android:textColor="#ffffff"
-            android:onClick="backHome" />
+            android:onClick="backHome"
+            android:visibility="invisible"/>
 
     </FrameLayout>
 

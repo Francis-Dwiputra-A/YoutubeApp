@@ -12,7 +12,7 @@ import android.widget.VideoView;
 
 public class VideoViewActivity extends AppCompatActivity {
     VideoView video;
-    Boolean clicked = false;
+    Boolean clicked = true;
     Button btn;
 
 
