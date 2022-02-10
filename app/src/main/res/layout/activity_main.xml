@@ -7,31 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="785dp"
-        android:layout_weight="1"
-        android:background="@color/white"
-        android:gravity="right"
-        tools:ignore="MissingConstraints">
-
-        <EditText
-            android:id="@+id/editMobileNo"
-            android:layout_width="270dp"
-            android:layout_height="40dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/edittext"
-            android:drawableLeft="@drawable/ic_search"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Search"
-            tools:ignore="TouchTargetSizeCheck"></EditText>
-
-    </LinearLayout>
-
-
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="25dp"
@@ -182,7 +157,9 @@
         android:id="@+id/imageView16"
         android:layout_width="134dp"
         android:layout_height="54dp"
+        android:layout_marginTop="7dp"
         android:layout_marginEnd="7dp"
+        android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -193,11 +170,11 @@
         android:layout_width="2700dp"
         android:layout_height="240dp"
         android:layout_marginTop="300dp"
+        android:onClick="openVideo"
         app:layout_constraintBottom_toTopOf="@+id/imageView21"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/thumbnail"
-        android:onClick="openVideo" />
+        app:srcCompat="@drawable/thumbnail" />
 
     <ImageView
         android:id="@+id/imageView21"
@@ -217,4 +194,20 @@
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:menu="@menu/menu_navigation" />
+
+    <EditText
+        android:id="@+id/editMobileNo"
+        android:layout_width="270dp"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/edittext"
+        android:drawableLeft="@drawable/ic_search"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Search"
+        tools:ignore="TouchTargetSizeCheck"></EditText>
 </RelativeLayout>
