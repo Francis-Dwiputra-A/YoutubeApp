@@ -20,14 +20,14 @@
         app:srcCompat="@drawable/youtube" />
 
     <EditText
-        android:id="@+id/editMobileNo"
+        android:id="@+id/edit"
         android:layout_width="170dp"
         android:layout_height="48dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="7dp"
         android:layout_marginEnd="6dp"
         android:layout_marginRight="6dp"
-        android:layout_marginTop="7dp"
         android:background="@drawable/edittext"
         android:drawableLeft="@drawable/ic_search"
         android:ems="10"
@@ -51,7 +51,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/short_1" />
+            app:srcCompat="@drawable/short_1"
+            android:onClick="Change"/>
 
         <ImageView
             android:id="@+id/imageView18"

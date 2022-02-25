@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,16 +47,20 @@ public class about extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-
-        username = findViewById(R.id.username);
-        password = findViewById(R.id.password);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .detectAll()
+                .penaltyLog()
+                .build();
+        StrictMode.setThreadPolicy(policy);
+        username = findViewById(R.id.txtusername);
+        password = findViewById(R.id.txtpassword);
         submit = findViewById(R.id.submit);
 
         req = Volley.newRequestQueue(getApplicationContext());
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                send_data();
+                send();
             }
         });
         //initialize and assign variable
@@ -112,15 +123,37 @@ public class about extends AppCompatActivity {
                 Toast.makeText(about.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("User_Name",username.getText().toString());
-                params.put("User_Password",password.getText().toString());  
+                params.put("username",username.getText().toString());
+                params.put("password",password.getText().toString());
                 return params;
             }
         };
         request.setRetryPolicy(new DefaultRetryPolicy(10000,1,1.0f));
         req.add(request);
+    }
+
+    public void send(){
+        EditText txtTest;
+        txtTest = findViewById(R.id.tester);
+        String s = "";
+        try{
+            URL url = new URL("https://fjrmobileprog.000webhostapp.com/Text.php?a=abc");
+            URLConnection ucon = url.openConnection();
+            InputStream in = ucon.getInputStream();
+            InputStreamReader isr = new InputStreamReader(in);
+            int data = isr.read();
+            while(data != -1){
+                char current = (char) data;
+                s = s + current;
+                data = isr.read();
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        txtTest.setText(s);
     }
 }

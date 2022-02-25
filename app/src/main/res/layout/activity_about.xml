@@ -42,7 +42,7 @@
         tools:ignore="TouchTargetSizeCheck"></EditText>
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/txtusername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -73,7 +73,7 @@
         tools:ignore="TouchTargetSizeCheck"></EditText>
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/txtpassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -86,6 +86,22 @@
         android:gravity="left"
         android:hint="Password"
         android:inputType="textPassword"
+        tools:ignore="TouchTargetSizeCheck"></EditText>
+
+    <EditText
+        android:id="@+id/tester"
+        android:layout_width="132dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="258dp"
+        android:layout_marginRight="258dp"
+        android:background="@drawable/edittext"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:text="test"
         tools:ignore="TouchTargetSizeCheck"></EditText>
 
 </RelativeLayout>

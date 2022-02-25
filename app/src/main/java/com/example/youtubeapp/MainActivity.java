@@ -8,11 +8,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.VideoView;
 import android.widget.MediaController;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 
 public class MainActivity extends AppCompatActivity {
     VideoView video;
@@ -60,5 +67,25 @@ public class MainActivity extends AppCompatActivity {
     public void openVideo(View v) {
         Intent intent = new Intent(this, VideoViewActivity.class);
         startActivity(intent);
+    }
+    public void Change(View v){
+        EditText txtTest;
+        txtTest = findViewById(R.id.edit);
+        String s = "";
+        try{
+            URL url = new URL("https://fjrmobileprog.000webhostapp.com/Text.php?a=abc");
+            URLConnection ucon = url.openConnection();
+            InputStream in = ucon.getInputStream();
+            InputStreamReader isr = new InputStreamReader(in);
+            int data = isr.read();
+            while(data != 1){
+                char current = (char) data;
+                s = s + current;
+                data = isr.read();
+            }
+            txtTest.setText(s);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
