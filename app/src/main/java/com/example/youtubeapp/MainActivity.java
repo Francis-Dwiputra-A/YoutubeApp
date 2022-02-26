@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.VideoView;
 import android.widget.MediaController;
 
@@ -23,11 +24,19 @@ import java.net.URLConnection;
 
 public class MainActivity extends AppCompatActivity {
     VideoView video;
+    EditText txtTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        txtTest = findViewById(R.id.edit);
+        txtTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Change(view);
+            }
+        });
 
         //initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
@@ -69,21 +78,19 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void Change(View v){
-        EditText txtTest;
-        txtTest = findViewById(R.id.edit);
         String s = "";
         try{
-            URL url = new URL("https://fjrmobileprog.000webhostapp.com/Text.php?a=abc");
+            URL url = new URL("https://fjrmobileprog.000webhostapp.com/search.php?a=" + txtTest.getText().toString());
             URLConnection ucon = url.openConnection();
             InputStream in = ucon.getInputStream();
             InputStreamReader isr = new InputStreamReader(in);
             int data = isr.read();
-            while(data != 1){
+            while(data != -1){
                 char current = (char) data;
                 s = s + current;
                 data = isr.read();
             }
-            txtTest.setText(s);
+            Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
         }
