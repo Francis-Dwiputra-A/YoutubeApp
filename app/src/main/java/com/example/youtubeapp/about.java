@@ -35,34 +35,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class about extends AppCompatActivity {
-    EditText username, password;
-    Button submit;
-    String sendurl = "https://fjrmobileprog.000webhostapp.com/signUp.php";
-    RequestQueue req;
-    int success;
-    String TAG_Success = "success";
-    String TAG_Message = "message";
-    String tag_json_obj = "json_obj_req";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                .detectAll()
-                .penaltyLog()
-                .build();
-        StrictMode.setThreadPolicy(policy);
-        username = findViewById(R.id.txtusername);
-        password = findViewById(R.id.txtpassword);
-        submit = findViewById(R.id.submit);
-
-        req = Volley.newRequestQueue(getApplicationContext());
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                send();
-            }
-        });
         //initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
 
@@ -73,87 +49,28 @@ public class about extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
+                switch (menuItem.getItemId()) {
                     case R.id.dashboard:
                         startActivity(new Intent(getApplicationContext()
-                                ,dashboard.class));
-                        overridePendingTransition(0,0);
+                                , dashboard.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.home:
                         startActivity(new Intent(getApplicationContext()
-                                ,MainActivity.class));
-                        overridePendingTransition(0,0);
+                                , MainActivity.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.about:
                         return true;
                     case R.id.more:
                         startActivity(new Intent(getApplicationContext()
-                                ,More.class));
-                        overridePendingTransition(0,0);
+                                , More.class));
+                        overridePendingTransition(0, 0);
                         return true;
                 }
 
                 return false;
             }
         });
-    }
-
-    public void send_data(){
-        StringRequest request = new StringRequest(Request.Method.POST,
-                sendurl,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jobj = new JSONObject(response);
-                            success = jobj.getInt(TAG_Success);
-                            if (success == 1) {
-                                Toast.makeText(about.this, jobj.getString(TAG_Message), Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(about.this, jobj.getString(TAG_Message), Toast.LENGTH_SHORT).show();
-                            }
-
-                        } catch (JSONException e) {
-                            Toast.makeText(about.this, "Error" + e, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(about.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }){
-            public Map<String, String> getParams(){
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("username",username.getText().toString());
-                params.put("password",password.getText().toString());
-                return params;
-            }
-        };
-        request.setRetryPolicy(new DefaultRetryPolicy(10000,1,1.0f));
-        req.add(request);
-    }
-
-    public void send(){
-        EditText txtTest;
-        txtTest = findViewById(R.id.tester);
-        String s = "";
-        try{
-            URL url = new URL("https://fjrmobileprog.000webhostapp.com/Text.php?a=abc");
-            URLConnection ucon = url.openConnection();
-            InputStream in = ucon.getInputStream();
-            InputStreamReader isr = new InputStreamReader(in);
-            int data = isr.read();
-            while(data != -1){
-                char current = (char) data;
-                s = s + current;
-                data = isr.read();
-            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        txtTest.setText(s);
     }
 }
