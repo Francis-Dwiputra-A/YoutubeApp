@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -30,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .detectAll()
+                .penaltyLog()
+                .build();
+        StrictMode.setThreadPolicy(policy);
         txtTest = findViewById(R.id.edit);
         txtTest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,31 +53,31 @@ public class MainActivity extends AppCompatActivity {
         //Perform ItemSelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener
                 (new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
-                    case R.id.dashboard:
-                        startActivity(new Intent(getApplicationContext()
-                                ,dashboard.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.home:
-                        return true;
-                    case R.id.about:
-                        startActivity(new Intent(getApplicationContext()
-                                ,about.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.more:
-                        startActivity(new Intent(getApplicationContext()
-                                ,More.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                        switch (menuItem.getItemId()){
+                            case R.id.dashboard:
+                                startActivity(new Intent(getApplicationContext()
+                                        ,dashboard.class));
+                                overridePendingTransition(0,0);
+                                return true;
+                            case R.id.home:
+                                return true;
+                            case R.id.about:
+                                startActivity(new Intent(getApplicationContext()
+                                        ,about.class));
+                                overridePendingTransition(0,0);
+                                return true;
+                            case R.id.more:
+                                startActivity(new Intent(getApplicationContext()
+                                        ,More.class));
+                                overridePendingTransition(0,0);
+                                return true;
+                        }
 
-                return false;
-            }
-        });
+                        return false;
+                    }
+                });
     }
     public void openVideo(View v) {
         Intent intent = new Intent(this, VideoViewActivity.class);
