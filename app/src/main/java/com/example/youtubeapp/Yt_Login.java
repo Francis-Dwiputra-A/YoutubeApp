@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +23,11 @@ public class Yt_Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yt_login);
-
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .detectAll()
+                .penaltyLog()
+                .build();
+        StrictMode.setThreadPolicy(policy);
         home = findViewById(R.id.signup);
         username = findViewById(R.id.login_username);
         password = findViewById(R.id.login_password);
@@ -30,10 +35,25 @@ public class Yt_Login extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if((username.getText().toString().equals("FJR")) && (password.getText().toString().equals("admin"))){
+                String s = "";
+                try{
+                    URL url = new URL("https://fjrmobileprog.000webhostapp.com/login.php?a=" + username.getText().toString() + "&b=" + password.getText().toString());
+                    URLConnection ucon = url.openConnection();
+                    InputStream in = ucon.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(in);
+                    int data = isr.read();
+                    while(data != -1){
+                        char current = (char) data;
+                        s = s + current;
+                        data = isr.read();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if(s.equals("ok")){
                     Home(view);
                 }
-                else if((username.getText().toString().matches("")) && (password.getText().toString().matches(""))){
+                else if((username.getText().toString().matches("")) || (password.getText().toString().matches(""))){
                     Toast.makeText(Yt_Login.this, "Please Fill The Information Above", Toast.LENGTH_SHORT).show();
                 }
                 else{
