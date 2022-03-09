@@ -24,7 +24,6 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class MainActivity extends AppCompatActivity {
-    VideoView video;
     EditText txtTest;
 
     @Override

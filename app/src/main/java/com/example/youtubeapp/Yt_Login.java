@@ -18,7 +18,7 @@ import java.net.URLConnection;
 
 public class Yt_Login extends AppCompatActivity {
     Button home;
-    EditText username, password, txtTest;
+    EditText username, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -33,11 +33,6 @@ import java.util.Map;
 public class yt_signup extends AppCompatActivity {
     Button register;
     EditText username, password;
-    RequestQueue req;
-    int success;
-    String TAG_Success = "success";
-    String TAG_Message = "message";
-    String tag_json_obj = "json_obj_req";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +45,6 @@ public class yt_signup extends AppCompatActivity {
         register = findViewById(R.id.signup);
         username = findViewById(R.id.sign_username);
         password = findViewById(R.id.sign_password);
-
-        req = Volley.newRequestQueue(getApplicationContext());
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
