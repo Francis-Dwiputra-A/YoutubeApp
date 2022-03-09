@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,7 +33,6 @@ import java.util.Map;
 public class yt_signup extends AppCompatActivity {
     Button register;
     EditText username, password;
-    String sendurl = "https://fjrmobileprog.000webhostapp.com/signUp.php";
     RequestQueue req;
     int success;
     String TAG_Success = "success";
@@ -42,7 +42,11 @@ public class yt_signup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yt_signup);
-
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .detectAll()
+                .penaltyLog()
+                .build();
+        StrictMode.setThreadPolicy(policy);
         register = findViewById(R.id.signup);
         username = findViewById(R.id.sign_username);
         password = findViewById(R.id.sign_password);
@@ -68,31 +72,23 @@ public class yt_signup extends AppCompatActivity {
     }
 
     public void send_data(){
-        StringRequest request = new StringRequest(Request.Method.POST,
-                sendurl,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jobj = new JSONObject(response);
-                        } catch (JSONException e) {
-                            Toast.makeText(yt_signup.this, "Error: " + e, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(yt_signup.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+        String s = "";
+        try{
+            URL url = new URL("https://fjrmobileprog.000webhostapp.com/FJR_signup.php?a=" + username.getText().toString() + "&b=" + password.getText().toString());
+            URLConnection ucon = url.openConnection();
+            InputStream in = ucon.getInputStream();
+            InputStreamReader isr = new InputStreamReader(in);
+            int data = isr.read();
+            while(data != -1){
+                char current = (char) data;
+                s = s + current;
+                data = isr.read();
             }
-        }){
-            public Map<String, String> getParams(){
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("username",username.getText().toString());
-                params.put("password",password.getText().toString());
-                return params;
-            }
-        };
-        request.setRetryPolicy(new DefaultRetryPolicy(10000,1,1.0f));
-        req.add(request);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(s.equals("no")){
+            Toast.makeText(yt_signup.this, "Error for inserting data, please try again", Toast.LENGTH_SHORT).show();
+        }
     }
 }
